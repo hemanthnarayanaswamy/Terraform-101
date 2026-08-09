@@ -1,0 +1,5 @@
+project_id      = "replace-with-your-gcp-project-id"
+region          = "us-central1"
+environment     = "dev"
+bucket_name     = "replace-with-a-globally-unique-bucket-name"
+bucket_location = "US"
