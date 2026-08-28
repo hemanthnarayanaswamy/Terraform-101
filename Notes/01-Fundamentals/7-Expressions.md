@@ -271,3 +271,4 @@ google_compute_instance.web[*].id
   google_compute_instance.web[2].id
 ]
 ```
+Commonly used with `count` & `for_each`
