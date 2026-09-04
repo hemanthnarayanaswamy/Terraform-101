@@ -1,22 +1,6 @@
-# Terraform Language (HCL) — Deep-Dive Coding Workbook
-
-> Companion to the roadmap. This document is **language-first and code-heavy**. Learn each construct, then immediately write HCL, predict outputs, debug broken snippets, and build real scenarios. Solutions are hidden in `<details>` blocks — try first, then expand.
-
-**How to use:** Type every snippet into `.tf` files in a sandbox and run `terraform console`, `terraform validate`, `terraform plan`. The `terraform console` REPL is your best friend for the language — most expression exercises here can be tested there in seconds.
-
-```bash
-# Your two most-used commands while learning the language:
-terraform console        # interactive REPL to test expressions
-terraform validate       # checks syntax + types without hitting AWS
-```
-
----
-
 # PART A — The Language, Construct by Construct
 
 Each section: **what it is → syntax → gotchas → drills → self-check.**
-
----
 
 ## A1. File & Block Structure
 
