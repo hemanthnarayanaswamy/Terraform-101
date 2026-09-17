@@ -356,6 +356,8 @@ var.project_id
 
 ## Variable Precedence
 
+![img](https://www.devopsschool.com/blog/wp-content/uploads/2023/09/image-456.png)
+
 ```ini
 1. Highest Priority: Command Line
 terraform apply -var="region=us-east1"
