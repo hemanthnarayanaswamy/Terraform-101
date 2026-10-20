@@ -19,13 +19,10 @@ Terraform functions are important for tasks such as variable interpolation, gene
 - Validation
 - Dynamic configuration
 
-
-
 ## Function Syntax
 
 ```hcl
 function_name(argument1, argument2, ...)
-l
 upper("terraform")
 length(var.zones)
 ```
@@ -34,7 +31,7 @@ length(var.zones)
 
 ## Common Terraform Function Categories
 
-<table class="table__component"><thead class="table__head"><tr class="table__row"><th class="table__header" width="20%">Category </th><th width="30%" class="table__header">Description </th><th class="table__header">Examples</th></tr></thead><tbody class="table__body"><tr class="table__row"><td class="table__cell cc-feature">String </td><td class="table__cell">Manipulate and transform strings</td><td class="table__cell"><span class="code">join(separator, list)</span>, <span class="code">split(separator, string)</span>, <span class="code">replace(string, search, replace)</span>, <span class="code">trimspace(string)</span> etc.</td></tr><tr class="table__row"><td class="table__cell cc-feature">Numeric </td><td class="table__cell">Perform arithmetic operations</td><td class="table__cell"><span class="code">abs(number)</span>, <span class="code">ceil(number), floor(number)</span> etc.</td></tr><tr class="table__row"><td class="table__cell cc-feature">Collection</td><td class="table__cell">Work with lists, maps, and sets</td><td class="table__cell"><span class="code">length(list or map)</span>, <span class="code">element(list, index)</span>, <span class="code">flatten(list)</span>, <span class="code">merge(map1, map2, ...)</span> etc. </td></tr><tr class="table__row"><td class="table__cell cc-feature">Date and Time </td><td class="table__cell">Work with date and time values</td><td class="table__cell"><span class="code">timestamp()</span>, <span class="code">timeadd(timestamp, duration)</span>, <span class="code">formatdate(format, timestamp)</span>, <span class="code">uuid()</span> etc.</td></tr><tr class="table__row"><td class="table__cell cc-feature">Encoding </td><td class="table__cell">Encode and decode values, and transform data formats</td><td class="table__cell"><span class="code">base64encode(string)</span>, <span class="code">base64decode(string)</span>, <span class="code">jsondecode(string)</span> etc. </td></tr><tr class="table__row"><td class="table__cell cc-feature">Type Conversion </td><td class="table__cell">Convert between different types</td><td class="table__cell"><span class="code">tostring(value)</span>, <span class="code">tonumber(value)</span>, <span class="code">toset(value) etc.</span></td></tr><tr class="table__row"><td class="table__cell cc-feature">Filesystem</td><td class="table__cell">Read files from the filesystem</td><td class="table__cell"><span class="code">file(path)</span>, <span class="code">filebase64(path)</span>, <span class="code">dirname(path)</span> etc.</td></tr><tr class="table__row"><td class="table__cell cc-feature">IP Network </td><td class="table__cell">Work with IP addresses and networks</td><td class="table__cell"><span class="code">cidrnetmask(prefix)</span>, <span class="code">cidrrange(prefix)</span> etc.</td></tr></tbody></table>
+<table class="table__component"><thead class="table__head"><tr class="table__row"><th class="table__header" width="20%">Category </th><th width="30%" class="table__header">Description </th><th class="table__header">Examples</th></tr></thead><tbody class="table__body"><tr class="table__row"><td class="table__cell cc-feature">String </td><td class="table__cell">Manipulate and transform strings</td><td class="table__cell"><span class="code">join(separator, list)</span>, <span class="code">split(separator, string)</span>, <span class="code">replace(string, search, replace)</span>, <span class="code">trimspace(string)</span> etc.</td></tr><tr class="table__row"><td class="table__cell cc-feature">Numeric </td><td class="table__cell">Perform arithmetic operations</td><td class="table__cell"><span class="code">abs(number)</span>, <span class="code">ceil(number), floor(number)</span>, <span class="code">pow(number, power)</span> etc.</td></tr><tr class="table__row"><td class="table__cell cc-feature">Collection</td><td class="table__cell">Work with lists, maps, and sets</td><td class="table__cell"><span class="code">length(list or map)</span>, <span class="code">element(list, index)</span>, <span class="code">flatten(list)</span>, <span class="code">merge(map1, map2, ...)</span> etc. </td></tr><tr class="table__row"><td class="table__cell cc-feature">Date and Time </td><td class="table__cell">Work with date and time values</td><td class="table__cell"><span class="code">timestamp()</span>, <span class="code">timeadd(timestamp, duration)</span>, <span class="code">formatdate(format, timestamp)</span> etc.</td></tr><tr class="table__row"><td class="table__cell cc-feature">Encoding </td><td class="table__cell">Encode and decode values, and transform data formats</td><td class="table__cell"><span class="code">base64encode(string)</span>, <span class="code">base64decode(string)</span>, <span class="code">jsondecode(string)</span>, <span class="code">yamlencode(value)</span> etc. </td></tr><tr class="table__row"><td class="table__cell cc-feature">Hash and Crypto </td><td class="table__cell">Create hashes, UUIDs, and encrypted value helpers</td><td class="table__cell"><span class="code">sha256(string)</span>, <span class="code">base64sha256(string)</span>, <span class="code">uuid()</span> etc.</td></tr><tr class="table__row"><td class="table__cell cc-feature">Type Conversion </td><td class="table__cell">Convert between different types</td><td class="table__cell"><span class="code">tostring(value)</span>, <span class="code">tonumber(value)</span>, <span class="code">toset(value) etc.</span></td></tr><tr class="table__row"><td class="table__cell cc-feature">Filesystem</td><td class="table__cell">Read files from the filesystem</td><td class="table__cell"><span class="code">file(path)</span>, <span class="code">filebase64(path)</span>, <span class="code">dirname(path)</span> etc.</td></tr><tr class="table__row"><td class="table__cell cc-feature">IP Network </td><td class="table__cell">Work with IP addresses and networks</td><td class="table__cell"><span class="code">cidrnetmask(prefix)</span>, <span class="code">cidrsubnets(prefix, newbits...)</span> etc.</td></tr><tr class="table__row"><td class="table__cell cc-feature">Terraform-specific </td><td class="table__cell">Encode and decode Terraform language values</td><td class="table__cell"><span class="code">provider::terraform::encode_tfvars(value)</span>, <span class="code">provider::terraform::decode_tfvars(string)</span> etc.</td></tr></tbody></table>
 
 ---
 
@@ -66,7 +63,7 @@ trim("--terraform--", "-")
 
 terraform
 ```
-#### 4. `replace(string, substring-tobe-replaced, replacement)`
+#### 4. `replace(string, search, replacement)`
 Replace text.
 
 ```hcl
@@ -93,14 +90,154 @@ join("-", ["dev", "api"])
 dev-api
 ```
 
-#### 7. `substr(string, start_idx, end_idx)`
-Extract part of a string. Indexing works similar to python.
+#### 7. `substr(string, offset, length)`
+Extract part of a string by offset and length.
 
 ```hcl
 substr("terraform", 0, 4)
 
 terr
 ```
+
+#### 8. `chomp()`
+Removes newline characters from the end of a string.
+
+```hcl
+chomp("terraform\n")
+
+terraform
+```
+
+#### 9. `startswith()`
+Checks whether a string begins with a prefix.
+
+```hcl
+startswith("dev-api", "dev")
+
+true
+```
+
+#### 10. `endswith()`
+Checks whether a string ends with a suffix.
+
+```hcl
+endswith("dev-api", "api")
+
+true
+```
+
+#### 11. `strcontains()`
+Checks whether one string contains another string.
+
+```hcl
+strcontains("dev-api", "api")
+
+true
+```
+
+#### 12. `trimprefix()`
+Removes a prefix from the start of a string.
+
+```hcl
+trimprefix("dev-api", "dev-")
+
+api
+```
+
+#### 13. `trimsuffix()`
+Removes a suffix from the end of a string.
+
+```hcl
+trimsuffix("dev-api", "-api")
+
+dev
+```
+
+#### 14. `trimspace()`
+Removes whitespace from the start and end of a string.
+
+```hcl
+trimspace("  terraform  ")
+
+terraform
+```
+
+#### 15. `strrev()`
+Reverses the characters in a string.
+
+```hcl
+strrev("terraform")
+
+mrofarret
+```
+
+#### 16. `format()`
+Creates a formatted string.
+
+```hcl
+format("%s-%s", "dev", "api")
+
+dev-api
+```
+
+#### 17. `formatlist()`
+Creates a list of formatted strings.
+
+```hcl
+formatlist("server-%s", ["a", "b"])
+
+["server-a", "server-b"]
+```
+
+#### 18. `indent()`
+Adds spaces to each line after the first line.
+
+```hcl
+indent(2, "line1\nline2")
+
+line1
+  line2
+```
+
+#### 19. `regex()`
+Returns the first match from a regular expression.
+
+```hcl
+regex("[a-z]+", "env123")
+
+env
+```
+
+#### 20. `regexall()`
+Returns all matches from a regular expression.
+
+```hcl
+regexall("[0-9]+", "subnet-10-zone-2")
+
+["10", "2"]
+```
+
+#### 21. `templatestring()`
+Renders a string as a template using variables.
+
+```hcl
+locals {
+  greeting_template = "hello $${name}"
+}
+
+templatestring(
+  local.greeting_template,
+  {
+    name = "terraform"
+  }
+)
+
+hello terraform
+```
+
+The template argument should be a reference, not a direct string literal.
+The `$${name}` syntax keeps the placeholder literal until `templatestring()` renders it.
+
 ---
 ---
 
@@ -132,234 +269,340 @@ ceil(4.1)
 floor(4.9)
 4
 ```
+6. `log()`: Logarithm of a number in a specific base.
+```hcl
+log(100, 10)
+2
+```
+7. `parseint()`: Parse a string as an integer in a specific base.
+```hcl
+parseint("ff", 16)
+255
+```
+8. `pow()`: Raise a number to a power.
+```hcl
+pow(2, 3)
+8
+```
+9. `signum()`: Return the sign of a number.
+```hcl
+signum(-10)
+-1
+```
 ---
+
 
 # Collection Functions
 
 This category focuses on handling and manipulating lists and maps, making working with complex data structures in your configurations easier. These functions are useful for counting elements, retrieving specific items, flattening nested lists, and merging maps.
 
-## length()
-
+### 1. `length(list)`
 Returns number of elements.
 
 ```hcl
 length(["a","b","c"])
-```
 
-Result:
-
-```text
 3
 ```
 
----
-
-## contains()
-
+### 2. `contains()`
 Checks if collection contains value.
 
 ```hcl
-contains(
-  ["dev","test","prod"],
-  "prod"
-)
-```
+contains(["dev","test","prod"], "prod")
 
-Result:
-
-```text
 true
 ```
 
----
-
-## distinct()
-
+### 3. `distinct()`
 Removes duplicates.
 
 ```hcl
-distinct(
-  ["a","a","b","c"]
-)
+distinct(["a","a","b","c"])
+
+["a","b","c"]
 ```
 
-Result:
-
-```hcl
-[
-  "a",
-  "b",
-  "c"
-]
-```
-
----
-
-## sort()
-
+### 4. `sort()`
 Sort list.
 
 ```hcl
-sort(
-  ["c","a","b"]
-)
+sort(["c","a","b"])
+
+["a","b","c"]
 ```
 
-Result:
-
-```hcl
-[
-  "a",
-  "b",
-  "c"
-]
-```
-
----
-
-## reverse()
-
+### 5. `reverse()`
 Reverse list.
 
 ```hcl
-reverse(
-  ["a","b","c"]
-)
+reverse(["a","b","c"])
+
+["c","b","a"]
 ```
 
-Result:
-
-```hcl
-[
-  "c",
-  "b",
-  "a"
-]
-```
-
----
-
-## element()
-
+### 6. `element()`
 Retrieve item by index.
 
 ```hcl
-element(
-  ["a","b","c"],
-  1
-)
-```
+element(["a","b","c"],1)
 
-Result:
-
-```text
 b
 ```
 
----
-
-## keys()
-
-Get map keys.
+### 7. `keys() / values()`
+* Get map keys and values respectively.
 
 ```hcl
 keys({
   env = "dev"
   app = "api"
 })
-```
 
-Result:
-
-```hcl
 [
   "app",
   "env"
 ]
-```
 
----
-
-## values()
-
-Get map values.
-
-```hcl
 values({
   env = "dev"
   app = "api"
 })
-```
 
-Result:
-
-```hcl
 [
   "api",
   "dev"
 ]
 ```
 
+### 8. `alltrue()`
+Returns true when all values in a collection are true.
 
+```hcl
+alltrue([true, true, true])
+true
+```
 
+### 9. `anytrue()`
+Returns true when at least one value in a collection is true.
+
+```hcl
+anytrue([false, true, false])
+true
+```
+
+### 10. `chunklist()`
+Splits one list into smaller fixed-size lists.
+
+```hcl
+chunklist(["a", "b", "c", "d"], 2)
+
+[["a", "b"], ["c", "d"]]
+```
+
+### 11. `coalesce()`
+Returns the first value that is not null or an empty string.
+
+```hcl
+coalesce(null, "", "dev")
+
+dev
+```
+
+### 12. `coalescelist()`
+Returns the first list that is not empty.
+
+```hcl
+coalescelist([], ["dev"], ["prod"])
+
+["dev"]
+```
+
+### 13. `compact()`
+Removes null and empty string values from a list.
+
+```hcl
+compact(["a", "", null, "b"])
+
+["a","b"]
+```
+
+---
+
+### 14. `concat()`
+Combines multiple lists into one list.
+
+```hcl
+concat(["a"], ["b", "c"])
+
+["a","b","c"]
+```
+
+### 15. `flatten()`
+Flattens nested lists into a single list.
+
+```hcl
+flatten([["a", "b"], ["c"]])
+
+["a","b","c"]
+```
+
+### 16. `index()`
+Returns the index of the first matching list value.
+
+```hcl
+index(["a", "b", "c"], "b")
+
+1
+```
+
+### 17. `lookup()`
+Gets a value from a map and returns a default value when the key is missing.
+
+```hcl
+lookup({env = "dev"}, "team", "platform")
+
+platform
+```
+
+### 18. `matchkeys()`
+Returns values whose matching keys are present in a search list.
+
+```hcl
+matchkeys(["alice", "bob", "carol"],["dev", "prod", "dev"],["dev"])
+
+["alice","carol"]
+```
+
+### 19. `merge()`
+Combines maps or objects into one value. Later arguments win when keys overlap.
+
+```hcl
+merge({ env = "dev" }, { app = "api" })
+
+{app = "api", env = "dev"}
+```
+
+### 20. `range()`
+Generates a list of numbers.
+
+```hcl
+range(1, 5)
+
+[1,2,3,4]
+```
+
+### 21. `setintersection()`
+Returns values that exist in all sets.
+
+```hcl
+setintersection(toset(["a", "b"]), toset(["b", "c"]))
+
+["b"]
+```
+
+### 22. `setproduct()`
+Returns every combination from multiple sets or lists. Similar to ***Cross Join*** in SQL
+
+```hcl
+setproduct(["dev", "prod"], ["web", "api"])
+
+[
+  ["dev", "web"],
+  ["dev", "api"],
+  ["prod", "web"],
+  ["prod", "api"]
+]
+```
+
+### 23. `setsubtract()`
+Returns values from the first set that are not in the second set.
+
+```hcl
+setsubtract(toset(["a", "b", "c"]),toset(["b"])
+)
+
+["a","c"]
+```
+
+### 24. `setunion()`
+Combines multiple sets and keeps unique values.
+
+```hcl
+setunion(
+  toset(["a", "b"]),
+  toset(["b", "c"])
+)
+
+["a", "b","c"]
+```
+
+### 25. `slice()`
+Returns a portion of a list.
+
+```hcl
+slice(["a", "b", "c", "d"], 1, 3)
+
+["b", "c"]
+```
+
+### 26. `sum()`
+Returns the sum of numbers in a list or set.
+
+```hcl
+sum([10, 20, 30])
+
+60
+```
+
+### 27. `transpose()`
+Swaps keys and values in a map of string lists.
+
+```hcl
+transpose({
+  app = ["api", "web"]
+  env = ["api"]
+})
+
+{
+  api = ["app", "env"]
+  web = ["app"]
+}
+```
+
+### 28. `zipmap()`
+Creates a map from a list of keys and a list of values.
+
+```hcl
+zipmap(["env", "app"], ["dev", "api"])
+
+{
+  app = "api"
+  env = "dev"
+}
+```
+---
 ---
 
 # Type Conversion Functions
 
-## tostring()
-
-Convert to string.
+1. `tostring()`: Convert to string.
 
 ```hcl
-tostring(100)
+tostring(100) -> "100"
 ```
-
-Result:
-
-```text
-"100"
-```
-
----
-
-## tonumber()
-
-Convert to number.
+2. `tonumber()` Convert to number.
 
 ```hcl
-tonumber("100")
+tonumber("100") -> 100
 ```
-
-Result:
-
-```text
-100
-```
-
----
-
-## tolist()
-
-Convert to list.
+3. `tolist()` Convert to list.
 
 ```hcl
 tolist(["a","b"])
 ```
 
-Result:
-
-```hcl
-[
-  "a",
-  "b"
-]
-```
-
----
-
-## tomap()
-
-Convert to map.
+4. `tomap()` Convert to map.
 
 ```hcl
 tomap({
@@ -367,158 +610,261 @@ tomap({
 })
 ```
 
+5. `toset()` Convert list to set. Unique values only.
+
+```hcl
+toset(["a","a", "b"])
+
+["a","b"]
+```
+
+6. `tobool()` Convert to boolean.
+
+```hcl
+tobool("true")
+```
+
+### 7. `can()` 
+Tests whether an expression can be evaluated without an error.
+
+```hcl
+can(tonumber("abc"))
+
+false
+```
+
+***Useful in variable validation.***
+
+### 8. `try()`
+Returns the first expression that does not fail.
+
+```hcl
+try(tomap({app = "api"})["env"],"dev")
+
+dev
+```
+
+***Useful when working with optional attributes.***
+
+### 9. `type()`
+Returns the type of a value.
+
+```hcl
+type("terraform") -> string
+```
+10.  `sensitive()` Marks a value as sensitive.
+
+```hcl
+sensitive("secret-password")
+
+(sensitive value)
+```
+11. `issensitive()` Checks whether Terraform treats a value as sensitive.
+
+```hcl
+issensitive(sensitive("secret-password"))
+```
+12. `nonsensitive()` Removes the sensitive mark from a value.
+
+```hcl
+nonsensitive(sensitive("secret-password"))
+```
+Use carefully because it exposes the value.
+
+13. `ephemeralasnull()` Converts an ephemeral value to null.
+
+```hcl
+ephemeralasnull(var.session_token)
+
+null when the value is ephemeral
+```
+---
 ---
 
-## toset()
+# Terraform-Specific Functions
 
-Convert list to set.
+These functions use Terraform's built-in provider-defined function syntax.
 
-```hcl
-toset([
-  "a",
-  "a",
-  "b"
-])
-```
+Useful for:
+- Generating `.tfvars` content
+- Reading `.tfvars` content
+- Generating Terraform expression syntax
 
-Result:
+## 1. `provider::terraform::encode_tfvars()`
+Converts an object into `.tfvars` file content.
 
 ```hcl
-[
-  "a",
-  "b"
-]
+provider::terraform::encode_tfvars({
+  env   = "dev"
+  count = 2
+})
+
+env = "dev"
+count = 2
 ```
 
-Unique values only.
-
----
-
-# File Functions
-
-## file()
-
-Read file contents.
+## 2. `provider::terraform::decode_tfvars()`
+Converts `.tfvars` file content into an object.
 
 ```hcl
-file("script.sh")
+provider::terraform::decode_tfvars(
+  "env = \"dev\""
+)
+
+{env = "dev"}
 ```
 
-Returns file content.
-
----
-
-## fileexists()
-
-Check if file exists.
+## 3. `provider::terraform::encode_expr()`
+Converts a Terraform value into Terraform expression syntax.
 
 ```hcl
-fileexists("script.sh")
-```
-
-Result:
-
-```text
-true
-```
-
----
-
-# Encoding Functions
-
-## jsonencode()
-
-Convert Terraform object to JSON.
-
-```hcl
-jsonencode({
+provider::terraform::encode_expr({
   env = "dev"
 })
-```
 
-Result:
-
-```json
-{"env":"dev"}
-```
-
----
-
-## jsondecode()
-
-Convert JSON to Terraform object.
-
-```hcl
-jsondecode("{\"env\":\"dev\"}")
-```
-
-Result:
-
-```hcl
 {
   env = "dev"
 }
 ```
-
+---
 ---
 
-## base64encode()
+# Encoding Functions
+
+### 1. `jsonencode()`
+Convert Terraform object to JSON.
 
 ```hcl
-base64encode("terraform")
+jsonencode({env = "dev"})
+
+{"env":"dev"}
+```
+
+### 2. `jsondecode()`
+Convert JSON to Terraform object.
+
+```hcl
+jsondecode("{\"env\":\"dev\"}")
+
+{env = "dev"}
+```
+
+### 3. `base64encode()`
+Convert string to Base64.
+
+```hcl
+base64encode("terraform")  ---> dGVycmFmb3Jt
+```
+
+### 4. `base64decode()`
+Convert Base64 back to string.
+
+```hcl
+base64decode("dGVycmFmb3Jt") ---> terraform
+```
+
+### 5. `base64gzip()`
+Compress a string with gzip and then Base64 encode it.
+
+```hcl
+base64gzip("terraform")
+
+Base64 encoded gzip content
+```
+
+***Useful for compressed startup scripts or user data.***
+
+### 6. `csvdecode()`
+Convert CSV text into a list of maps.
+
+```hcl
+csvdecode("name,env\napi,dev")
+
+[
+  {
+    env  = "dev"
+    name = "api"
+  }
+]
+```
+
+### 7. `textencodebase64()`
+Encode text using a specific character encoding, then Base64 encode it.
+
+```hcl
+textencodebase64("terraform", "UTF-8")
+
+dGVycmFmb3Jt
+```
+
+### 8. `textdecodebase64()`
+Decode Base64 text using a specific character encoding.
+
+```hcl
+textdecodebase64("dGVycmFmb3Jt", "UTF-8")
+
+terraform
+```
+
+### 9. `urlencode()`
+URL-encode a string.
+
+```hcl
+urlencode("env=dev api")
+
+env%3Ddev+api
+```
+
+### 10. `yamlencode()`
+Convert a Terraform value to YAML.
+
+```hcl
+yamlencode({
+  env = "dev"
+})
+
+env: dev
+```
+
+### 11. `yamldecode()`
+Convert YAML into a Terraform value.
+
+```hcl
+yamldecode("env: dev")
+
+{env = "dev"}
 ```
 
 ---
-
-## base64decode()
-
-```hcl
-base64decode("dGVycmFmb3Jt")
-```
-
 ---
 
-# Date & Time Functions
+# Hash and Crypto Functions
 
-## timestamp()
+Terraform hash and crypto functions are useful for checksums, stable IDs, password hashes, and cloud API inputs that expect encoded hashes.
 
-Current UTC timestamp.
-
-```hcl
-timestamp()
-```
-
-Example:
-
-```text
-2026-08-28T17:00:00Z
-```
+1. `md5(str)` Returns an MD5 hash as hexadecimal text.
+2. `sha1(str)` Returns a SHA-1 hash as hexadecimal text.
+3. `sha256(str)` Returns a SHA-256 hash as hexadecimal text.
+4. `sha512(str)` Returns a SHA-512 hash as hexadecimal text.
+5. `base64sha256()` Returns a SHA-256 hash encoded with Base64.
+6. `base64sha512()` Returns a SHA-512 hash encoded with Base64.
+7. `filemd5()` Returns an MD5 hash of a file's contents.
+8. `filesha1()` Returns a SHA-1 hash of a file's contents.
+9. `filesha256()` Returns a SHA-256 hash of a file's contents.
+10. `filesha512()` Returns a SHA-512 hash of a file's contents.
+11. `filebase64sha256()` Returns a Base64-encoded SHA-256 hash of a file's contents.
+12. `filebase64sha512()` Returns a Base64-encoded SHA-512 hash of a file's contents.
+13. `bcrypt()` Returns a bcrypt password hash.
+14. `rsadecrypt()` Decrypts Base64-encoded RSA ciphertext with a PEM private key.
+15. `uuid()` Generates a random UUID. *Use carefully because the value can change between Terraform runs.*
+16. `uuidv5()` Generates a stable UUID from a namespace and name. ***Useful when you need the same UUID for the same input.***
 
 ---
-
-## formatdate()
-
-Format date.
-
-```hcl
-formatdate(
-  "YYYY-MM-DD",
-  timestamp()
-)
-```
-
-Result:
-
-```text
-2026-08-28
-```
-
 ---
 
 # Network Functions
 
 Terraform provides built-in networking functions that are commonly used when working with:
-
 - VPCs
 - Subnets
 - IP Planning
@@ -529,74 +875,38 @@ Terraform provides built-in networking functions that are commonly used when wor
 
 The most important networking functions are:
 
-```text
+```ini
 cidrsubnet()
 cidrhost()
 cidrnetmask()
+cidrsubnets()
 ```
 
----
-
-## cidrsubnet()
-
+### 1. `cidrsubnet()`
 Creates a subnet from an existing network.
-
-Syntax:
 
 ```hcl
 cidrsubnet(prefix, newbits, netnum)
-```
 
-Parameters:
+# Parameters:
 
-```text
 prefix  -> Parent CIDR block
 newbits -> Number of additional subnet bits
 netnum  -> Subnet number
 ```
-
----
-
-### Example
+EXAMPLE:
 
 ```hcl
-cidrsubnet(
-  "10.0.0.0/16",
-  8,
-  1
-)
-```
+cidrsubnet("10.0.0.0/16", 8, 1)
 
-Result:
-
-```text
 10.0.1.0/24
 ```
+***HOW IT WORKS***
 
----
-
-### How it Works
-
-Parent Network:
-
-```text
-10.0.0.0/16
-```
-
-Adding:
-
-```text
-8 bits
-```
-
-Creates:
-
-```text
-/24 subnets
-```
-
+Parent Network: `10.0.0.0/16`
+Adding: `8 bits`
+Creates:  `/24` subnets
 Available subnets:
-
 ```text
 10.0.0.0/24
 10.0.1.0/24
@@ -605,634 +915,172 @@ Available subnets:
 ...
 ```
 
-Using:
-
-```text
-netnum = 1
-```
-
-Result:
-
-```text
-10.0.1.0/24
-```
-
----
-
-### More Examples
-
-#### First Subnet
+### 2. `cidrsubnets()`
+Creates multiple consecutive subnet CIDR blocks from one network.
 
 ```hcl
-cidrsubnet(
-  "10.0.0.0/16",
-  8,
-  0
-)
+cidrsubnets(prefix, newbits...)
 ```
 
-Result:
+**Example:**
 
-```text
+```hcl
+cidrsubnets("10.0.0.0/16",8,8,8)
+
 10.0.0.0/24
-```
-
----
-
-#### Second Subnet
-
-```hcl
-cidrsubnet(
-  "10.0.0.0/16",
-  8,
-  1
-)
-```
-
-Result:
-
-```text
 10.0.1.0/24
-```
-
----
-
-#### Third Subnet
-
-```hcl
-cidrsubnet(
-  "10.0.0.0/16",
-  8,
-  2
-)
-```
-
-Result:
-
-```text
 10.0.2.0/24
 ```
+Useful when you need Terraform to allocate several subnets in sequence.
 
----
-
-## Real GCP Example
-
-VPC:
-
-```text
-10.0.0.0/16
-```
-
-Subnets:
-
-```hcl
-locals {
-
-  subnet_a = cidrsubnet(
-    "10.0.0.0/16",
-    8,
-    0
-  )
-
-  subnet_b = cidrsubnet(
-    "10.0.0.0/16",
-    8,
-    1
-  )
-
-}
-```
-
-Results:
-
-```text
-10.0.0.0/24
-10.0.1.0/24
-```
-
-Useful when creating VPCs dynamically.
-
----
-
-## cidrhost()
-
+### 3. `cidrhost()`
 Returns a specific host IP within a network.
-
-Syntax:
 
 ```hcl
 cidrhost(prefix, hostnum)
-```
 
-Parameters:
-
-```text
+# Parameters:
 prefix  -> CIDR block
 hostnum -> Host number
 ```
-
----
-
-### Example
+**Example**
 
 ```hcl
-cidrhost(
-  "10.0.1.0/24",
-  10
-)
+cidrhost("10.0.1.0/24",10)  --> 10.0.1.10 # tenth host
+cidrhost("10.0.1.0/24",5)  --> 10.0.1.5 # fifth host
+cidrhost("10.0.1.0/24",1)  --> 10.0.1.1 # first host
 ```
-
-Result:
-
-```text
-10.0.1.10
-```
-
----
-
-### More Examples
-
-#### First Host
-
-```hcl
-cidrhost(
-  "10.0.1.0/24",
-  1
-)
-```
-
-Result:
-
-```text
-10.0.1.1
-```
-
----
-
-#### Fifth Host
-
-```hcl
-cidrhost(
-  "10.0.1.0/24",
-  5
-)
-```
-
-Result:
-
-```text
-10.0.1.5
-```
-
----
-
-#### Tenth Host
-
-```hcl
-cidrhost(
-  "10.0.1.0/24",
-  10
-)
-```
-
-Result:
-
-```text
-10.0.1.10
-```
-
----
-
-## Real Example
+**Real Example**
 
 ```hcl
 locals {
-
-  subnet = cidrsubnet(
-    "10.0.0.0/16",
-    8,
-    0
-  )
-
-  gateway = cidrhost(
-    local.subnet,
-    1
-  )
-
+  subnet = cidrsubnet("10.0.0.0/16",8,0)
+  gateway = cidrhost(local.subnet,1)
 }
-```
 
-Results:
-
-```text
 Subnet  = 10.0.0.0/24
 Gateway = 10.0.0.1
 ```
 
----
-
-## cidrnetmask()
-
+### 4. `cidrnetmask()`
 Returns the subnet mask from a CIDR block.
 
-Example:
-
 ```hcl
-cidrnetmask("10.0.0.0/24")
+cidrnetmask("10.0.0.0/24") --> 255.255.255.0
+
+cidrnetmask("10.0.0.0/16") --> 255.255.0.0
+
+cidrnetmask("10.0.0.0/8") --> 255.0.0.0
 ```
-
-Result:
-
-```text
-255.255.255.0
-```
-
+---
 ---
 
-### More Examples
-
-```hcl
-cidrnetmask("10.0.0.0/16")
-```
-
-Result:
-
-```text
-255.255.0.0
-```
-
----
-
-```hcl
-cidrnetmask("10.0.0.0/8")
-```
-
-Result:
-
-```text
-255.0.0.0
-```
-
----
-
-# Functions + Locals
-
-Very common pattern:
-
-```hcl
-locals {
-
-  vpc_cidr = "10.0.0.0/16"
-
-  app_subnet = cidrsubnet(
-    local.vpc_cidr,
-    8,
-    0
-  )
-
-  db_subnet = cidrsubnet(
-    local.vpc_cidr,
-    8,
-    1
-  )
-
-}
-```
-
-Results:
-
-```text
-app_subnet -> 10.0.0.0/24
-db_subnet  -> 10.0.1.0/24
-```
-
----
-
-# GCP Example
-
-```hcl
-resource "google_compute_subnetwork" "app" {
-
-  name = "app-subnet"
-
-  ip_cidr_range = cidrsubnet(
-    "10.0.0.0/16",
-    8,
-    0
-  )
-
-  region = var.region
-
-}
-```
-
-Terraform automatically calculates:
-
-```text
-10.0.0.0/24
-```
-
----
-
-# Best Practices
-
-### ✅ Define Network Once
-
-```hcl
-locals {
-  vpc_cidr = "10.0.0.0/16"
-}
-```
-
----
-
-### ✅ Generate Subnets Dynamically
-
-```hcl
-cidrsubnet()
-```
-
-instead of hardcoding subnets.
-
----
-
-### ✅ Keep Address Planning Predictable
-
-Good:
-
-```text
-10.0.0.0/24 App
-10.0.1.0/24 Database
-10.0.2.0/24 Shared
-```
-
-Bad:
-
-```text
-Random CIDR allocations
-```
-
----
-
-# Interview Questions
-
-### What does cidrsubnet() do?
-
-Creates smaller subnet CIDR blocks from a larger network CIDR block.
-
----
-
-### What does cidrhost() do?
-
-Returns a specific host IP address within a CIDR block.
-
----
-
-### What does cidrnetmask() do?
-
-Converts CIDR notation into a subnet mask.
-
----
-
-### Why is cidrsubnet() useful?
-
-Because it allows Terraform to generate subnet ranges dynamically instead of hardcoding them.
-
----
-
-# Quick Revision
-
-Network Functions:
-
-```text
-cidrsubnet()
-cidrhost()
-cidrnetmask()
-```
-
-Most Important:
-
-```hcl
-cidrsubnet(
-  "10.0.0.0/16",
-  8,
-  1
-)
-```
-
-Result:
-
-```text
-10.0.1.0/24
-```
-
-Use Cases:
-
-```text
-VPC Design
-Subnet Allocation
-GKE Networking
-Multi-Environment Networks
-Infrastructure Automation
-```
 # Filesystem Functions
 
 Filesystem functions work with files and paths on the machine where Terraform runs.
 
 Useful for:
-
 - Reading startup scripts
 - Loading JSON policies
 - Reading configuration files
 - Loading templates
 
----
-
-## file()
-
-Reads the contents of a file.
-
-Example:
+1. `file()` Reads the contents of a file.
 
 ```hcl
 file("startup.sh")
-```
 
-startup.sh:
-
-```bash
+<!-- startup.sh:
 #!/bin/bash
-echo "Hello World"
+echo "Hello World" -->
+
+# Entire file contents returned as a string
 ```
 
-Result:
-
-```text
-Entire file contents returned as a string
-```
-
----
-
-## fileexists()
-
-Checks whether a file exists.
-
-Example:
+2. `fileexists()` Checks whether a file exists.
 
 ```hcl
-fileexists("startup.sh")
+fileexists("startup.sh") --> true/false
 ```
 
-Result:
-
-```text
-true
-```
-
-or
-
-```text
-false
-```
-
----
-
-## fileset()
-
-Returns files matching a pattern.
-
-Example:
+3. `fileset()` Returns files matching a pattern. using wild cards
 
 ```hcl
 fileset(".", "*.tf")
+
+["main.tf","outputs.tf","variables.tf"]
 ```
 
-Suppose:
-
-```text
-main.tf
-variables.tf
-outputs.tf
-README.md
-```
-
-Result:
-
-```hcl
-[
-  "main.tf",
-  "outputs.tf",
-  "variables.tf"
-]
-```
-
----
-
-## dirname()
-
-Returns parent directory.
-
-Example:
+4. `dirname()` Returns parent directory.
 
 ```hcl
 dirname("/home/hemanth/main.tf")
-```
 
-Result:
-
-```text
 /home/hemanth
 ```
 
----
-
-## basename()
-
-Returns final part of path.
-
-Example:
+5. `basename()` Returns final part of path.
 
 ```hcl
 basename("/home/hemanth/main.tf")
-```
 
-Result:
-
-```text
 main.tf
 ```
+6. `abspath()` Converts a path to an absolute path.
 
----
+```hcl
+abspath("main.tf")
 
-## path.module
+/home/hemanth/project/main.tf
+```
+Useful when a provider needs a full local path.
 
-Path of current module.
+7. `pathexpand()` Expands `~` to the current user's home directory.
 
-Example:
+```hcl
+pathexpand("~/terraform")
+
+/home/hemanth/terraform
+```
+8. `filebase64()` Reads a file and returns its Base64-encoded contents.
+
+```hcl
+filebase64("startup.sh")
+
+Base64 encoded file content
+```
+Useful when an API expects binary or encoded file content.
+
+9. `templatefile()` Reads a template file and replaces variables.
+
+```hcl
+templatefile("${path.module}/startup.tftpl", {
+  name = "web"
+})
+
+<<-- startup.tftpl: -->>
+
+hello ${name}
+
+hello web
+```
+10. `path.module` Path of current module.
 
 ```hcl
 path.module
-```
 
-Result:
-
-```text
 /modules/network
 ```
-
 Commonly used with:
 
 ```hcl
 file("${path.module}/script.sh")
 ```
+11. `path.root` Path of root module.
+
+12. `path.cwd` Current working directory.
 
 ---
-
-## path.root
-
-Path of root module.
-
-Example:
-
-```hcl
-path.root
-```
-
----
-
-## path.cwd
-
-Current working directory.
-
-Example:
-
-```hcl
-path.cwd
-```
-
----
-
-## Real Example
-
-Startup Script:
-
-```hcl
-resource "google_compute_instance" "web" {
-
-  metadata_startup_script =
-    file("${path.module}/startup.sh")
-
-}
-```
-
-Terraform loads:
-
-```text
-startup.sh
-```
-
-and injects it into the VM.
-
 ---
 
 # Date & Time Functions
@@ -1240,199 +1088,56 @@ and injects it into the VM.
 Terraform provides functions for working with timestamps and dates.
 
 Useful for:
-
 - Naming resources
 - Generating unique values
 - Expiration calculations
 - Logging metadata
 
----
-
-## timestamp()
-
-Returns the current UTC timestamp.
-
-Example:
+1. `timestamp()` Returns the current UTC timestamp.
 
 ```hcl
-timestamp()
+timestamp() --> 2026-08-28T17:00:00Z
 ```
 
-Result:
-
-```text
-2026-08-28T17:00:00Z
-```
-
-Format:
-
-```text
-RFC3339
-```
-
----
-
-## formatdate()
-
-Formats a timestamp.
-
-Syntax:
+2. `formatdate()` Formats a timestamp.
 
 ```hcl
 formatdate(format, timestamp)
+
+formatdate("YYYY-MM-DD", timestamp())  --> 2026-08-28
 ```
+**Common Format Tokens**
 
-Example:
+- Year: `YYYY`
+- Month: `MM`
+- Day: `DD`
+- Hour: `hh`
+- Minute: `mm`
+- Seconds: `ss`
 
-```hcl
-formatdate(
-  "YYYY-MM-DD",
-  timestamp()
-)
-```
-
-Result:
-
-```text
-2026-08-28
-```
-
----
-
-## Common Format Tokens
-
-Year:
-
-```text
-YYYY
-```
-
-Month:
-
-```text
-MM
-```
-
-Day:
-
-```text
-DD
-```
-
-Hour:
-
-```text
-hh
-```
-
-Minute:
-
-```text
-mm
-```
-
-Second:
-
-```text
-ss
-```
-
----
-
-## Example
-
-```hcl
-formatdate(
-  "YYYY-MM-DD hh:mm:ss",
-  timestamp()
-)
-```
-
-Result:
-
-```text
-2026-08-28 17:00:00
-```
-
----
-
-## timeadd()
-
-Adds time duration.
-
-Syntax:
-
+3. `timeadd()` Adds time duration.
 ```hcl
 timeadd(timestamp, duration)
+
+timeadd(timestamp(),"24h")
 ```
 
-Example:
+4. `plantimestamp()` Returns the UTC timestamp from the time Terraform created the plan.
+
+Useful when you need a stable timestamp across the same plan and apply operation.
+
+5. `timecmp()` Compares two timestamps.
 
 ```hcl
-timeadd(
-  timestamp(),
-  "24h"
-)
+timecmp(timestamp_a, timestamp_b)
+timecmp("2026-08-28T17:00:00Z", "2026-08-29T17:00:00Z")
+
+-1
 ```
+**Return values:**
 
-Result:
-
-```text
-Tomorrow's timestamp
+```ini
+-1 -> First timestamp is earlier
+ 0 -> Both timestamps are equal
+ 1 -> First timestamp is later
 ```
-
----
-
-### More Examples
-
-Add 1 Hour:
-
-```hcl
-timeadd(
-  timestamp(),
-  "1h"
-)
-```
-
----
-
-Add 30 Minutes:
-
-```hcl
-timeadd(
-  timestamp(),
-  "30m"
-)
-```
-
----
-
-Add 7 Days:
-
-```hcl
-timeadd(
-  timestamp(),
-  "168h"
-)
-```
-
----
-
-## Example: Expiration Date
-
-```hcl
-locals {
-
-  expires_at =
-    timeadd(
-      timestamp(),
-      "720h"
-    )
-
-}
-```
-
-Result:
-
-```text
-30 days from 
